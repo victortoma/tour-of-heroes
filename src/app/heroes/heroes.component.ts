@@ -15,13 +15,26 @@ export class HeroesComponent implements OnInit, OnDestroy {
 
    constructor(private heroService: HeroService, private location: Location) {}
 
-   getHeroes(): void {
+   public getHeroes(): void {
       this.sub = this.heroService
-         .getHeroes()
+         .getHeroes$()
          .subscribe((heroes) => (this.heroes = heroes));
    }
-   goForward(): void {
+   public goForward(): void {
       this.location.forward();
+   }
+   public add(name: string): void {
+      name = name.trim();
+      if (!name) {
+         return;
+      }
+      this.heroService.addHero$({ name } as Hero).subscribe((hero) => {
+         this.heroes.push(hero);
+      });
+   }
+   public delete(hero: Hero): void {
+      this.heroes = this.heroes.filter((h) => h !== hero);
+      this.heroService.deleteHero$(hero.id).subscribe();
    }
    ngOnInit(): void {
       this.getHeroes();

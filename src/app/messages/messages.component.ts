@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { Hero } from '../hero';
+import { HeroService } from '../services/hero.service';
 import { MessageService } from '../services/message.service';
 
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.scss'],
+   selector: 'app-messages',
+   templateUrl: './messages.component.html',
+   styleUrls: ['./messages.component.scss'],
 })
 export class MessagesComponent implements OnInit {
-  constructor(public messageService: MessageService) {}
+   constructor(
+      public messageService: MessageService,
+      public heroService: HeroService
+   ) {}
 
-  ngOnInit(): void {}
+   ngOnInit(): void {}
 }
