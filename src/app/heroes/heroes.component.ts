@@ -24,6 +24,8 @@ export class HeroesComponent implements OnInit, OnDestroy {
       this.location.forward();
    }
    public add(name: string): void {
+      const x = this.heroes.map((hero) => hero.id);
+      console.log(Math.max(...x));
       name = name.trim();
       if (!name) {
          return;
