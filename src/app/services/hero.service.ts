@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Hero } from '../hero';
+import { Hero } from '../interfaces/hero';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
@@ -13,6 +13,7 @@ export class HeroService {
    private httpOptions = {
       headers: new HttpHeaders({ 'Content-type': 'application/json' }),
    };
+
    constructor(
       private readonly messageService: MessageService,
       private readonly http: HttpClient
@@ -64,6 +65,7 @@ export class HeroService {
          catchError(this.handleError<Hero[]>('searchHeroes, []'))
       );
    }
+
    private log(message: string) {
       this.messageService.add(`HeroService: ${message}`);
    }

@@ -3,7 +3,7 @@ import { Observable, Subject } from 'rxjs';
 
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
-import { Hero } from '../hero';
+import { Hero } from '../interfaces/hero';
 import { HeroService } from '../services/hero.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class HeroSearchComponent implements OnInit {
    constructor(private heroService: HeroService) {}
 
    // Push a search term into the observable stream.
-   search(term: string): void {
+   public search(term: string): void {
       this.searchTerms.next(term);
    }
 

@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Hero } from '../hero';
+import { Hero } from '../interfaces/hero';
 import { HeroService } from '../services/hero.service';
 
 @Component({
@@ -10,8 +10,8 @@ import { HeroService } from '../services/hero.service';
    styleUrls: ['./heroes.component.scss'],
 })
 export class HeroesComponent implements OnInit, OnDestroy {
-   heroes: Hero[] = [];
-   sub!: Subscription;
+   public heroes: Hero[] = [];
+   private sub!: Subscription;
 
    constructor(private heroService: HeroService, private location: Location) {}
 
@@ -38,6 +38,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
       this.heroes = this.heroes.filter((h) => h !== hero);
       this.heroService.deleteHero$(hero.id).subscribe();
    }
+
    ngOnInit(): void {
       this.getHeroes();
    }
